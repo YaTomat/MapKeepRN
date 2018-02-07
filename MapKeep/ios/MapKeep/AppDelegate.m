@@ -11,7 +11,6 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import "ReactNativeConfig.h"
 @import GoogleMaps;
 
 @implementation AppDelegate
@@ -21,7 +20,7 @@
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-  NSString *apiKey = [ReactNativeConfig envFor:@"GOOGLE_MAP_API_KEY_IOS"];
+  NSString *apiKey = @"AIzaSyBVWslLFI6WPjLgmIAlm4KfoLnDg8w1LB0";
   [GMSServices provideAPIKey:apiKey];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"MapKeep"

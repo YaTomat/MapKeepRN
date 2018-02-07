@@ -26,7 +26,6 @@ target 'MapKeep' do
 
   pod 'GoogleMaps'  # Remove this line if you don't want to support Google Maps on iOS
   pod 'react-native-google-maps', path: rn_maps_path  # Remove this line if you don't want to support Google Maps on iOS
-  pod 'react-native-config', :path => '../node_modules/react-native-config'
 
 end
 

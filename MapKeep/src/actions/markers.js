@@ -1,5 +1,4 @@
 import types from '../constants/actionTypes'
-import Config from 'react-native-config'
 import { Downloader } from '../utils/Downloader'
 import { NavigationActions } from 'react-navigation';
 
@@ -10,10 +9,10 @@ export function updateMarker(coordinate, name, note) {
 export function getMarkers() {
   return (dispatch) => {
     dispatch({ type: types.GET_DEFAULT_COORDINATES_START })
-    console.log(Downloader)
-    return Downloader.getJson(Config.DEFAULT_LOCATION_URI).then(result => {
+    Downloader.getJson('http://bit.ly/test-locations').then(result => {
       dispatch({ type: types.GET_DEFAULT_COORDINATES_SUCCESS, payload: result });
     }).catch(error => {
+      console.log(error)
       dispatch({ type: types.GET_DEFAULT_COORDINATES_FAIL, payload: error });
       
     })

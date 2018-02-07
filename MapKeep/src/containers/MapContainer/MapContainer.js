@@ -1,10 +1,4 @@
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
 import MapView from 'react-native-maps'
 import { connect } from 'react-redux';
 import styles from './styles'
@@ -37,6 +31,7 @@ class MapContainer extends Component {
   render() {
     return (
       <MapView
+        provider={'google'}
         onPress={(event) => {
           this.props.dispatch(addMarker(event.nativeEvent.coordinate))
         }}
