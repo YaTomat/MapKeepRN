@@ -10,7 +10,8 @@ export function updateMarker(coordinate, name, note) {
 export function getMarkers() {
   return (dispatch) => {
     dispatch({ type: types.GET_DEFAULT_COORDINATES_START })
-    Downloader.getJson(Config.DEFAULT_LOCATION_URI).then(result => {
+    console.log(Downloader)
+    return Downloader.getJson(Config.DEFAULT_LOCATION_URI).then(result => {
       dispatch({ type: types.GET_DEFAULT_COORDINATES_SUCCESS, payload: result });
     }).catch(error => {
       dispatch({ type: types.GET_DEFAULT_COORDINATES_FAIL, payload: error });
