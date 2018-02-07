@@ -6,4 +6,6 @@ export default mirrorKeyValue([
   'GET_DEFAULT_COORDINATES_FAIL',
   
   'UPDATE_MARKER',
+  
+  'ADD_MARKER'
 ])

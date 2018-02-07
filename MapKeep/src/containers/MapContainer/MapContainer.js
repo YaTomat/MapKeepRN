@@ -7,9 +7,9 @@ import {
 } from 'react-native';
 import MapView from 'react-native-maps'
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
-import { getMarkers } from '../../actions/markers'
-import { Marker } from "react-native-maps/lib/components/MapView";
+import { getMarkers, updateMarker, addMarker } from '../../actions/markers'
+import EditableMarker from "../../components/EditableMarker/EditableMarker";
+import NavigationActions from "react-navigation/src/NavigationActions";
 
 const getInitialState = () => {
   return {
@@ -40,19 +40,25 @@ class MapContainer extends Component {
   render() {
     return (
       <MapView
-        onPress={() => {
-          this.props.dispatch(NavigationActions.navigate({ routeName: 'Details' }))
+        onPress={(event) => {
+          this.props.dispatch(addMarker(event.nativeEvent.coordinate))
         }}
         style={styles.map}
         region={this.state.region}
         onRegionChangeComplete={this.onRegionChange}
       >
-        {this.props.markers.map(marker => {
-          console.log(marker)
-          return (<Marker
-              key={marker.key + marker.longitude + marker.latitude}
+        {this.props.markers.map((marker, key) => {
+          return (<EditableMarker
+              key={key}
               coordinate={{ latitude: marker.lat, longitude: marker.lng }}
               title={marker.name}
+              note={marker.note}
+              onPress={(coordinate) => {
+                console.log(coordinate)
+                this.props.dispatch(NavigationActions.navigate({
+                routeName: 'Details',
+                params: { coordinate }
+              }))}}
             />
           )
         })}
@@ -75,6 +81,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
     markers: state.marker.markers
   }

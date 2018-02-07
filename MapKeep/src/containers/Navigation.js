@@ -7,21 +7,10 @@ import PropTypes from 'prop-types';
 import { addListener } from '../utils/navigationRedux';
 import { BackHandler }from "react-native";
 
-const navigationOptions = ({ navigation }) => ({
+const detailsNavigationOptions = ({ navigation }) => ({
   headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />,
   title: 'Location Details'
 })
-
-const DetailLocationStack = StackNavigator(
-  {
-    LocationsDetails: {
-      screen: EditLocationDetailsContainer,
-      navigationOptions
-    },
-  },
-  {
-  }
-);
 
 export const RootStack = StackNavigator(
   {
@@ -29,14 +18,9 @@ export const RootStack = StackNavigator(
       screen: MapContainer,
     },
     Details: {
-      screen: DetailLocationStack,
-      navigationOptions
+      screen: EditLocationDetailsContainer,
+      detailsNavigationOptions
     },
-  },
-  {
-    initialRouteName: 'Home',
-    mode: 'modal',
-    headerMode: 'none',
   }
 );
 
