@@ -5,7 +5,7 @@ import {
 import { updateMarker } from '../../actions/markers'
 import { connect } from 'react-redux';
 import EditScreen from "../../components/EditScreen/EditScreen";
-import { equalityCoordinatesFunc } from "../../utils/Coordinte";
+import { equalityCoordinatesFunc } from "../../utils/Coordinate";
 
 class EditLocationDetailsContainer extends Component {
   
@@ -18,6 +18,7 @@ class EditLocationDetailsContainer extends Component {
         <EditScreen
           onChangeText={(text) => this.props.dispatch(updateMarker(this.props.coordinate, text, this.props.note))}
           fieldName={'Name'}
+          styles={{height: 40}}
           fieldValue={this.props.title}
         />
         <EditScreen

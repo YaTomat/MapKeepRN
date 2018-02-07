@@ -27,7 +27,7 @@ class EditScreen extends Component {
         <Text style={styles.inputDescription}>{this.props.fieldName}</Text>
         <TextInput
           value={this.props.fieldValue}
-          style={styles.inputNote}
+          style={[styles.inputNote, this.props.styles]}
           placeholder="Type here for saving info about place!"
           onChangeText={this.props.onChangeText}
         />
@@ -40,6 +40,7 @@ EditScreen.propTypes = {
   fieldName: PropTypes.string,
   onChangeText: PropTypes.func,
   fieldValue: PropTypes.string,
+  styles: PropTypes.object
 };
 
 export default EditScreen;

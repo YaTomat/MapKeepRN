@@ -18,13 +18,11 @@ class EditableMarker extends Component {
   
   render() {
     return (
-      <Marker coordinate={this.props.coordinate}>
+      <Marker coordinate={this.props.coordinate} title={this.props.title} ref={(refs) => this.markerRef = refs}>
         <Callout onPress={() => {
+          if (this.markerRef) this.markerRef.hideCallout()
           this.props.onPress(this.props.coordinate)
         }}>
-          <View>
-            <Text>{this.props.title}</Text>
-          </View>
         </Callout>
       </Marker>
     );
@@ -34,8 +32,7 @@ class EditableMarker extends Component {
 EditableMarker.propTypes = {
   coordinate: PropTypes.object,
   onPress: PropTypes.func,
-  title: PropTypes.string,
-  note: PropTypes.string
+  title: PropTypes.string
 };
 
 export default EditableMarker;

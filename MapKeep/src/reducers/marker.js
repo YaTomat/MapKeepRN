@@ -1,16 +1,10 @@
 import { handleActions } from 'redux-actions'
 import types from '../constants/actionTypes'
-import { equalityCoordinates, equalityCoordinatesFunc } from "../utils/Coordinte";
+import { equalityCoordinates, equalityCoordinatesFunc } from "../utils/Coordinate";
 
 const initialState = {
   loading: false,
-  markers: [],
-  newItem: {
-    lng: 0,
-    lat: 0,
-    note: '',
-    name: ''
-  }
+  markers: []
 }
 
 const findItemByLocation = (markers, coordinate) => markers.find(equalityCoordinatesFunc(coordinate));

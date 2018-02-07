@@ -52,9 +52,7 @@ class MapContainer extends Component {
               key={key}
               coordinate={{ latitude: marker.lat, longitude: marker.lng }}
               title={marker.name}
-              note={marker.note}
               onPress={(coordinate) => {
-                console.log(coordinate)
                 this.props.dispatch(NavigationActions.navigate({
                 routeName: 'Details',
                 params: { coordinate }

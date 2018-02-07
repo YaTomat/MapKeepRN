@@ -1,25 +1,49 @@
 import React, { Component } from 'react';
 import MapContainer from './MapContainer/MapContainer'
+import ListLocationsContainer from './ListContainer/ListLocationsContainer'
 import EditLocationDetailsContainer from './EditLocationDetailsContainer/EditLocationDetailsContainer'
 import { addNavigationHelpers, StackNavigator, HeaderBackButton, NavigationActions } from "react-navigation";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addListener } from '../utils/navigationRedux';
-import { BackHandler }from "react-native";
+import { BackHandler, Button }from "react-native";
 
 const detailsNavigationOptions = ({ navigation }) => ({
-  headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />,
-  title: 'Location Details'
+  headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)}/>,
+  headerTitle: 'Location Details'
+})
+
+const listNavigationOptions = ({ navigation }) => ({
+  headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)}/>,
+  headerTitle: 'Location List'
+})
+
+const mapNavigationOptions = ({ navigation }) => ({
+  headerRight: <Button title={'List'} onPress={() => {
+    navigation.dispatch(NavigationActions.navigate({ routeName: 'List' }))
+  }}/>,
+  headerTitle: 'Locations'
 })
 
 export const RootStack = StackNavigator(
   {
     Home: {
       screen: MapContainer,
+      navigationOptions: mapNavigationOptions
     },
     Details: {
       screen: EditLocationDetailsContainer,
-      detailsNavigationOptions
+      navigationOptions: detailsNavigationOptions
+    },
+    List: {
+      screen: ListLocationsContainer,
+      navigationOptions: listNavigationOptions
+    },
+  }, {
+    header: {
+      style: {
+        textAlign: 'center',
+      },
     },
   }
 );
@@ -29,9 +53,11 @@ class App extends Component {
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
+  
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
   }
+  
   onBackPress = () => {
     const { dispatch, nav } = this.props;
     if (nav.index === 0) {
