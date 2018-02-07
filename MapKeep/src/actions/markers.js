@@ -12,7 +12,6 @@ export function getMarkers() {
     Downloader.getJson('http://bit.ly/test-locations').then(result => {
       dispatch({ type: types.GET_DEFAULT_COORDINATES_SUCCESS, payload: result });
     }).catch(error => {
-      console.log(error)
       dispatch({ type: types.GET_DEFAULT_COORDINATES_FAIL, payload: error });
       
     })

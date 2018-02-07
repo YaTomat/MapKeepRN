@@ -33,7 +33,6 @@ class EditLocationDetailsContainer extends Component {
 
 const mapStateToProps = (state, props) => {
   let { coordinate } = props.navigation.state.params
-  console.log(state.marker.markers)
   let marker = state.marker.markers.find(equalityCoordinatesFunc({ lng: coordinate.longitude, lat: coordinate.latitude }))
   return ({
     coordinate: { latitude: marker.lat, longitude: marker.lng },
