@@ -7,18 +7,15 @@ import {
 } from 'react-native';
 import MapView from 'react-native-maps'
 import { connect } from 'react-redux';
+import styles from './styles'
 import { getMarkers, updateMarker, addMarker } from '../../actions/markers'
 import EditableMarker from "../../components/EditableMarker/EditableMarker";
 import NavigationActions from "react-navigation/src/NavigationActions";
+import { coordinatesSydney } from '../../utils/Coordinate'
 
 const getInitialState = () => {
   return {
-    region: {
-      latitude: -33.865143,
-      longitude: 151.209900,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    },
+    region: coordinatesSydney,
   };
 }
 
@@ -54,9 +51,10 @@ class MapContainer extends Component {
               title={marker.name}
               onPress={(coordinate) => {
                 this.props.dispatch(NavigationActions.navigate({
-                routeName: 'Details',
-                params: { coordinate }
-              }))}}
+                  routeName: 'Details',
+                  params: { coordinate }
+                }))
+              }}
             />
           )
         })}
@@ -64,19 +62,6 @@ class MapContainer extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    height: 400,
-    width: 400,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
-});
 
 const mapStateToProps = state => {
   console.log(state)
