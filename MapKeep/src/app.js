@@ -5,25 +5,42 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { navigationMiddleware } from './utils/navigationRedux';
-import reducer from './reducers';
+import reducers from './reducers';
+import { PersistGate } from 'redux-persist/es/integration/react';
+import { persistCombineReducers, persistStore } from "redux-persist";
+import storage from 'redux-persist/lib/storage';
 
-function configureStore(initialState) {
-  const enhancer = compose(
-    applyMiddleware(
-      navigationMiddleware,
-      thunkMiddleware
-    ),
+const configPersist = {
+  key: 'root',
+  storage,
+  blacklist: ['nav']
+};
+
+const reducer = persistCombineReducers(configPersist, reducers);
+
+function configureStore() {
+  const middleware = applyMiddleware(
+    navigationMiddleware,
+    thunkMiddleware
   );
-  return createStore(reducer, initialState, enhancer);
+  const store = createStore(reducer, middleware);
+  const persistor = persistStore(store);
+  
+  return {
+    store,
+    persistor,
+  };
 }
 
-const store = configureStore({});
+const { store, persistor } = configureStore({});
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Navigation />
+        <PersistGate persistor={persistor}>
+          <Navigation />
+        </PersistGate>
       </Provider>
     );
   }

@@ -8,12 +8,14 @@ import {
 import MapView from 'react-native-maps'
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import { getMarkers } from '../../actions/markers'
+import { Marker } from "react-native-maps/lib/components/MapView";
 
 const getInitialState = () => {
   return {
     region: {
-      latitude: 37.78825,
-      longitude: -122.4324,
+      latitude: -33.865143,
+      longitude: 151.209900,
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
     },
@@ -31,14 +33,30 @@ class MapContainer extends Component {
     this.state = getInitialState();
   }
   
+  componentWillMount() {
+    this.props.dispatch(getMarkers())
+  }
+  
   render() {
     return (
       <MapView
-        onPress={()=>{this.props.dispatch(NavigationActions.navigate({ routeName: 'Details' }))}}
+        onPress={() => {
+          this.props.dispatch(NavigationActions.navigate({ routeName: 'Details' }))
+        }}
         style={styles.map}
         region={this.state.region}
         onRegionChangeComplete={this.onRegionChange}
-      />
+      >
+        {this.props.markers.map(marker => {
+          console.log(marker)
+          return (<Marker
+              key={marker.key + marker.longitude + marker.latitude}
+              coordinate={{ latitude: marker.lat, longitude: marker.lng }}
+              title={marker.name}
+            />
+          )
+        })}
+      </MapView>
     );
   }
 }
@@ -57,8 +75,9 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  console.log(state)
-  return state
+  return {
+    markers: state.marker.markers
+  }
 }
 
 export default connect(mapStateToProps)(MapContainer)

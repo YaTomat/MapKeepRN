@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MapContainer from './MapContainer/MapContainer'
-import LocationDetailsContainer from './LocationDetailsContainer/LocationDetailsContainer'
+import EditLocationDetailsContainer from './EditLocationDetailsContainer/EditLocationDetailsContainer'
 import { addNavigationHelpers, StackNavigator, HeaderBackButton, NavigationActions } from "react-navigation";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -15,7 +15,7 @@ const navigationOptions = ({ navigation }) => ({
 const DetailLocationStack = StackNavigator(
   {
     LocationsDetails: {
-      screen: LocationDetailsContainer,
+      screen: EditLocationDetailsContainer,
       navigationOptions
     },
   },
@@ -53,7 +53,7 @@ class App extends Component {
     if (nav.index === 0) {
       return false;
     }
-    this.props.dispatch(NavigationActions.back());
+    dispatch(NavigationActions.back());
     return true;
   };
   

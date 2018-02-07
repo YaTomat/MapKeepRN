@@ -1,12 +1,9 @@
-import { combineReducers } from 'redux';
-import map from './map';
+import marker from './marker';
 import nav from './nav'
 
-const rootReducer = combineReducers({
+const rootReducer = {
   nav,
-  map
-})
-
-export default function reducer(state, action) {
-  return rootReducer(state, action,)
+  marker
 }
+
+export default rootReducer;
