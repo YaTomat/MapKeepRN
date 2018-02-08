@@ -27,7 +27,7 @@ describe('Locations reducer', () => {
     const action = {
       type: types.GET_DEFAULT_COORDINATES_START
     };
-    var initialStore = {
+    let initialStore = {
       ...INITIAL_STATE,
       markers: [{
         name: 'Izhevsk',
@@ -83,7 +83,7 @@ describe('Locations reducer', () => {
     };
     
     // When
-    var initialState = {
+    let initialState = {
       ...INITIAL_STATE,
       markers: []
     };

@@ -2,7 +2,6 @@ import { NavigationActions } from 'react-navigation';
 
 import { RootStack } from '../containers/Navigation';
 
-// Start with two routes: The Main screen, with the Login screen on top.
 const firstAction = RootStack.router.getActionForPathAndParams('Home');
 const tempNavState = RootStack.router.getStateForAction(firstAction);
 const initialNavState = RootStack.router.getStateForAction(

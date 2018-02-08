@@ -11,6 +11,7 @@
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react-native": "^3.2.1",
+    "expect": "^22.2.0",
     "mirror-key-value": "^1.0.5",
     "prop-types": "^15.6.0",
     "react": "16.2.0",

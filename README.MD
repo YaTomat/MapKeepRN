@@ -32,7 +32,10 @@ All notes changes will be saved automatically.
 
 3. Run `npm install`
 
+3.5*. For starting iOS version run `pod install` in ios folder
+
 4. Run project
+
 
 Run `react-native run-android` to run on Android devices or emulators
 
