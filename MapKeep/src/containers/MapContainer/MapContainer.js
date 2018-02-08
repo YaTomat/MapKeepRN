@@ -38,7 +38,7 @@ class MapContainer extends Component {
         }}
         style={styles.map}
         region={this.state.region}
-        onRegionChangeComplete={onRegionChange}
+        onRegionChangeComplete={this.onRegionChange}
       >
         {this.props.markers.map((marker, key) => {
           return (<EditableMarker
