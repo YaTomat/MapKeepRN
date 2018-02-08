@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {
-  Keyboard, ListView, Text, View
+  ListView, Text
 } from 'react-native';
 import styles from './styles'
 import { connect } from 'react-redux';
 import { coordinatesSydney, distance } from "../../utils/Coordinate";
+import PropTypes from 'prop-types';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -23,6 +24,11 @@ class ListContainer extends Component {
     );
   }
 }
+
+ListContainer.propTypes = {
+  dataSource: PropTypes.object
+};
+
 
 const mapStateToProps = (state) => {
   let markers = state.marker.markers.sort((markerA, markerB) => {

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import {
-  Keyboard, View
+  View
 } from 'react-native';
 import { updateMarker } from '../../actions/markers'
 import { connect } from 'react-redux';
 import EditScreen from "../../components/EditScreen/EditScreen";
 import { equalityCoordinatesFunc } from "../../utils/Coordinate";
+import PropTypes from 'prop-types';
 
 class EditLocationDetailsContainer extends Component {
   
@@ -30,6 +31,14 @@ class EditLocationDetailsContainer extends Component {
     );
   }
 }
+
+
+EditLocationDetailsContainer.propTypes = {
+  coordinate: PropTypes.object,
+  note: PropTypes.string,
+  title: PropTypes.string,
+  dispatch: PropTypes.func
+};
 
 const mapStateToProps = (state, props) => {
   let { coordinate } = props.navigation.state.params

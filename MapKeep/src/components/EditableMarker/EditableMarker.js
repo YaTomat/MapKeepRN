@@ -1,12 +1,4 @@
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Keyboard
-} from 'react-native';
 import PropTypes from 'prop-types';
 import { Callout, Marker } from "react-native-maps/lib/components/MapView";
 

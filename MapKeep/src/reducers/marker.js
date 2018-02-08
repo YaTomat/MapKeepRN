@@ -26,7 +26,7 @@ export default handleActions({
       markers
     })
   },
-  [types.GET_DEFAULT_COORDINATES_START]: (state, { payload }) => ({
+  [types.GET_DEFAULT_COORDINATES_START]: (state) => ({
     ...state,
     loading: true
   }),
@@ -35,7 +35,7 @@ export default handleActions({
     markers: state.markers.concat(payload.locations.filter(location => !findItemByLocation(state.markers, location))),
     loading: false,
   }),
-  [types.GET_DEFAULT_COORDINATES_FAIL]: (state, { payload }) => ({
+  [types.GET_DEFAULT_COORDINATES_FAIL]: (state) => ({
     ...state,
     loading: false
   }),

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Navigation from './containers/Navigation';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { navigationMiddleware } from './utils/navigationRedux';
 import reducers from './reducers';

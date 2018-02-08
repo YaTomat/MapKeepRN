@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import MapView from 'react-native-maps'
 import { connect } from 'react-redux';
 import styles from './styles'
-import { getMarkers, updateMarker, addMarker } from '../../actions/markers'
+import { getMarkers, addMarker } from '../../actions/markers'
 import EditableMarker from "../../components/EditableMarker/EditableMarker";
 import NavigationActions from "react-navigation/src/NavigationActions";
 import { coordinatesSydney } from '../../utils/Coordinate'
+import PropTypes from 'prop-types';
 
 const getInitialState = () => {
   return {
@@ -37,7 +38,7 @@ class MapContainer extends Component {
         }}
         style={styles.map}
         region={this.state.region}
-        onRegionChangeComplete={this.onRegionChange}
+        onRegionChangeComplete={onRegionChange}
       >
         {this.props.markers.map((marker, key) => {
           return (<EditableMarker
@@ -58,8 +59,13 @@ class MapContainer extends Component {
   }
 }
 
+
+MapContainer.propTypes = {
+  markers: PropTypes.array,
+  dispatch: PropTypes.func
+};
+
 const mapStateToProps = state => {
-  console.log(state)
   return {
     markers: state.marker.markers
   }
